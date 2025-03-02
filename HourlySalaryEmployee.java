@@ -39,6 +39,6 @@ public class HourlySalaryEmployee extends StaffMember {
     @Override
     public double pay() {
 
-        return 0;
+        return hourWork* rate;
     }
 }
