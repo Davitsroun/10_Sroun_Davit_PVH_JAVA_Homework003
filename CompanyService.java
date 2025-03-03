@@ -215,8 +215,8 @@ public class CompanyService {
                             table.addCell(String.valueOf(volunteer.id));
                             table.addCell(volunteer.name);
                             table.addCell(volunteer.address);
-                            table.addCell(String.valueOf(volunteer.getSalary()));
-                            table.addCell(String.valueOf(volunteer.pay()));
+                            table.addCell("$"+volunteer.getSalary());
+                            table.addCell("$"+volunteer.pay());
                             System.out.println(table.render());
 
 
@@ -238,7 +238,7 @@ public class CompanyService {
                                         String setaddress = sc.next();
                                         list.get(choice - 1).address = setaddress;
                                         System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                        check=true;
                                         break;
                                     }
                                     case 3: {
@@ -246,7 +246,7 @@ public class CompanyService {
                                         double setsalry = inputUtil.InputRate("=> Enter your new salary:");
                                         volunteer.setSalary(setsalry);
                                         System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                        check=true;
                                         break;
                                     }
                                     case 0: {
@@ -264,9 +264,9 @@ public class CompanyService {
                             table2.addCell(String.valueOf(salariedEmployee.id));
                             table2.addCell(salariedEmployee.name);
                             table2.addCell(salariedEmployee.address);
-                            table2.addCell(String.valueOf(salariedEmployee.getSalary()));
-                            table2.addCell(String.valueOf(salariedEmployee.getBunus()));
-                            table2.addCell(String.valueOf(salariedEmployee.pay()));
+                            table2.addCell("$"+salariedEmployee.getSalary());
+                            table2.addCell("%"+salariedEmployee.getBunus());
+                            table2.addCell("$"+salariedEmployee.pay());
 
                             System.out.println(table2.render());
 
@@ -279,7 +279,7 @@ public class CompanyService {
                                     String setname = inputUtil.Inputname("=> Enter your new name: ");
                                     list.get(choice - 1).name = setname;
                                     System.out.println(ANSI_BLUE + "Name update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 2: {
@@ -287,7 +287,7 @@ public class CompanyService {
                                     String setaddress = sc.next();
                                     list.get(choice - 1).address = setaddress;
                                     System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 3: {
@@ -295,13 +295,14 @@ public class CompanyService {
                                     double setsalry = inputUtil.InputRate("=> Enter your new salary:");
                                     salariedEmployee.setSalary(setsalry);
                                     System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 4: {
                                     double setbunus = inputUtil.Inputbalance("=> Enter your new Bunus");
                                     salariedEmployee.setBunus(setbunus);
                                     System.out.println(ANSI_BLUE + "Bunus update success..." + ANSI_RESET);
+                                    check=true;
                                     break;
                                 }
                                 case 0: {
@@ -319,9 +320,9 @@ public class CompanyService {
                             table3.addCell(String.valueOf(hourlySalaryEmployee.id));
                             table3.addCell(hourlySalaryEmployee.name);
                             table3.addCell(hourlySalaryEmployee.address);
-                            table3.addCell(String.valueOf(hourlySalaryEmployee.getHourWork()));
+                            table3.addCell(+hourlySalaryEmployee.getHourWork()+"h");
                             table3.addCell(String.valueOf(hourlySalaryEmployee.getRate()));
-                            table3.addCell(String.valueOf(hourlySalaryEmployee.pay()));
+                            table3.addCell("$"+hourlySalaryEmployee.pay());
 
                             System.out.println(table3.render());
 
@@ -335,7 +336,7 @@ public class CompanyService {
                                     String setname = inputUtil.Inputname("=> Enter your new name: ");
                                     list.get(choice - 1).name = setname;
                                     System.out.println(ANSI_BLUE + "Name update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 2: {
@@ -343,7 +344,7 @@ public class CompanyService {
                                     String setaddress = sc.next();
                                     list.get(choice - 1).address = setaddress;
                                     System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 3: {
@@ -351,13 +352,14 @@ public class CompanyService {
                                     int seethour = inputUtil.hour("=> Enter your new hour:");
                                     hourlySalaryEmployee.setHourWork(seethour);
                                     System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
-
+                                    check=true;
                                     break;
                                 }
                                 case 4: {
                                     double setRate = inputUtil.Inputbalance("=> Enter your new rate:");
                                     hourlySalaryEmployee.setRate(setRate);
                                     System.out.println(ANSI_BLUE + "Bunus update success..." + ANSI_RESET);
+                                    check=true;
                                     break;
                                 }
                                 case 0: {
@@ -376,36 +378,35 @@ public class CompanyService {
 
                     }
                 }
-
             }
             if(!check){
                 System.out.println(ANSI_RED+"Invalid id"+ANSI_RESET);
             }
             System.out.println();
-
         }catch (IndexOutOfBoundsException e){
             System.out.println(ANSI_RED+"Doesnot have that id"+ANSI_RESET);
         }
-
-
     }
-
-
-
-
 
 
     //caase4
     public static void delete() throws ConcurrentModificationException, IndexOutOfBoundsException {
         System.out.println(ANSI_BLUE+"=========Delete Employee=========="+ANSI_RESET);
         int delId= inputUtil.hour("=> Enter your id to delete:");
+        String yn= inputUtil.InputYN();
+
+
 
         try {
             while (true){
+                if (yn.equals("n")){
+                    System.out.println(ANSI_RED+"You choose to break case delete.... "+ANSI_RESET);
+                    return ;
+                }
                 for ( StaffMember s: list){
                     if(s.id == delId  ){
                         list.remove(s);
-                        System.out.println("success");
+                        System.out.println(ANSI_BLUE+"success update "+delId+ANSI_RESET);
                         return;
                     }
                 }
