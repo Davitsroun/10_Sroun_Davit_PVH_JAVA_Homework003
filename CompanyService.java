@@ -151,244 +151,7 @@ public class CompanyService {
 
         System.out.println();
 
-        try {
-            if (list.get(choice-1) != null  ){
-
-                    Table table=new Table(6, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
-                    CellStyle cellStyle =new CellStyle(CellStyle.HorizontalAlign.center);
-                    table.setColumnWidth(0,30,30);
-                    table.setColumnWidth(1,30,30);
-                    table.setColumnWidth(2,30,30);
-                    table.setColumnWidth(3,30,30);
-                    table.setColumnWidth(4,30,30);
-                    table.setColumnWidth(5,30,30);
-                table.addCell("Tye",cellStyle );
-                    table.addCell("ID",cellStyle );
-                    table.addCell("Name",cellStyle );
-                    table.addCell("Address",cellStyle );
-                    table.addCell("Salary",cellStyle );
-                    table.addCell("Pay",cellStyle );
-
-
-                Table table2=new Table(7, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
-                table2.setColumnWidth(0,30,30);
-                table2.setColumnWidth(1,30,30);
-                table2.setColumnWidth(2,30,30);
-                table2.setColumnWidth(3,30,30);
-                table2.setColumnWidth(4,30,30);
-                table2.setColumnWidth(5,30,30);
-                table2.setColumnWidth(6,30,30);
-                table2.addCell("Type",cellStyle );
-                table2.addCell("ID",cellStyle );
-                table2.addCell("Name",cellStyle );
-                table2.addCell("Address",cellStyle );
-                table2.addCell("Salary",cellStyle );
-                table2.addCell("Bunus",cellStyle );
-                table2.addCell("Pay",cellStyle );
-
-
-                Table table3=new Table(7, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
-                table3.setColumnWidth(0,30,30);
-                table3.setColumnWidth(1,30,30);
-                table3.setColumnWidth(2,30,30);
-                table3.setColumnWidth(3,30,30);
-                table3.setColumnWidth(4,30,30);
-                table3.setColumnWidth(5,30,30);
-                table3.setColumnWidth(6,30,30);
-                table3.addCell("Type");
-                table3.addCell("ID",cellStyle );
-                table3.addCell("Name",cellStyle );
-                table3.addCell("Address",cellStyle );
-                table3.addCell("Hourwork",cellStyle );
-                table3.addCell("Rate",cellStyle );
-                table3.addCell("Pay",cellStyle );
-
-
-
-                for (StaffMember s: list){
-
-                        if (choice == s.id){
-                            if (s  instanceof  Volunteer volunteer){
-                                table.addCell("Vounteer");
-                                table.addCell(String.valueOf(volunteer.id));
-                                table.addCell(volunteer.name);
-                                table.addCell(volunteer.address);
-                                table.addCell(String.valueOf(volunteer.getSalary()));
-                                table.addCell(String.valueOf(volunteer.pay()));
-
-                                System.out.println(table.render());
-
-
-                                System.out.println();
-                                System.out.println(ANSI_GREEN+"Choose one column to update: "+ANSI_RESET);
-                                System.out.println("1. Name \t\t 2. Address \t\t 3. Salary \t\t 0.Cancel");
-                                int select= inputUtil.hour("=> Select Column Number:");
-                                switch (select){
-                                    case 1: {
-                                        String setname= inputUtil.Inputname("=> Enter your new name: ");
-                                        list.get(choice-1).name= setname;
-                                        System.out.println(ANSI_BLUE+"Name update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 2:{
-                                        System.out.print("=> Enter your new address: ");
-                                        String setaddress= sc.next();
-                                        list.get(choice-1).address= setaddress;
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 3:{
-
-                                        double setsalry= inputUtil.InputRate("=> Enter your new salary:");
-                                        volunteer.setSalary(setsalry);
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 0:{
-                                        System.out.println(ANSI_RED+"Exite..."+ANSI_RESET);
-                                        return ;
-                                    }
-                                    default:{
-                                        System.out.println(ANSI_RED+"Invalid  option please try again...."+ANSI_RESET);
-                                        break;
-                                    }
-                                }
-
-
-                            } else if (s instanceof  SalariedEmployee salariedEmployee) {
-                                table2.addCell("SalariedEmployee",cellStyle );
-                                table2.addCell(String.valueOf(salariedEmployee.id));
-                                table2.addCell(salariedEmployee.name);
-                                table2.addCell(salariedEmployee.address);
-                                table2.addCell(String.valueOf(salariedEmployee.getSalary()));
-                                table2.addCell(String.valueOf(salariedEmployee.getBunus()));
-                                table2.addCell(String.valueOf(salariedEmployee.pay()));
-
-                                System.out.println(table2.render());
-
-                                System.out.println();
-                                System.out.println(ANSI_GREEN+"Choose one column to update: "+ANSI_RESET);
-                                System.out.println("1. Name \t\t 2. Address \t\t 3. Salary \t\t 4. Bunus  \t\t 0.Cancel");
-                                int select= inputUtil.hour("=> Select Column Number:");
-                                switch (select){
-                                    case 1: {
-                                        String setname= inputUtil.Inputname("=> Enter your new name: ");
-                                        list.get(choice-1).name= setname;
-                                        System.out.println(ANSI_BLUE+"Name update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 2:{
-                                        System.out.print("=> Enter your new address: ");
-                                        String setaddress= sc.next();
-                                        list.get(choice-1).address= setaddress;
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 3:{
-
-                                        double setsalry= inputUtil.InputRate("=> Enter your new salary:");
-                                        salariedEmployee.setSalary(setsalry);
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 4:{
-                                        double setbunus= inputUtil.Inputbalance("=> Enter your new Bunus");
-                                        salariedEmployee.setBunus(setbunus);
-                                        System.out.println(ANSI_BLUE+"Bunus update success..."+ANSI_RESET);
-                                        break;
-                                    }
-                                    case 0:{
-                                        System.out.println(ANSI_RED+"Exite..."+ANSI_RESET);
-                                        return ;
-                                    }
-                                    default:{
-                                        System.out.println(ANSI_RED+"Invalid  option please try again...."+ANSI_RESET);
-                                        break;
-                                    }
-                                }
-
-                            }else if (s instanceof  HourlySalaryEmployee hourlySalaryEmployee) {
-                                table3.addCell("HourlySalaryEmployee",cellStyle );
-                                table3.addCell(String.valueOf(hourlySalaryEmployee.id));
-                                table3.addCell(hourlySalaryEmployee.name);
-                                table3.addCell(hourlySalaryEmployee.address);
-                                table3.addCell(String.valueOf(hourlySalaryEmployee.getHourWork()));
-                                table3.addCell(String.valueOf(hourlySalaryEmployee.getRate()));
-                                table3.addCell(String.valueOf(hourlySalaryEmployee.pay()));
-
-                                System.out.println(table3.render());
-
-
-                                System.out.println();
-                                System.out.println(ANSI_GREEN+"Choose one column to update: "+ANSI_RESET);
-                                System.out.println("1. Name \t\t 2. Address \t\t 3. Hour \t\t 4. Rate  \t\t 0.Cancel");
-                                int select= inputUtil.hour("=> Select Column Number:");
-                                switch (select){
-                                    case 1: {
-                                        String setname= inputUtil.Inputname("=> Enter your new name: ");
-                                        list.get(choice-1).name= setname;
-                                        System.out.println(ANSI_BLUE+"Name update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 2:{
-                                        System.out.print("=> Enter your new address: ");
-                                        String setaddress= sc.next();
-                                        list.get(choice-1).address= setaddress;
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 3:{
-
-                                        int seethour= inputUtil.hour("=> Enter your new hour:");
-                                        hourlySalaryEmployee.setHourWork(seethour);
-                                        System.out.println(ANSI_BLUE+"Address update success..."+ANSI_RESET);
-
-                                        break;
-                                    }
-                                    case 4:{
-                                        double setRate= inputUtil.Inputbalance("=> Enter your new rate:");
-                                        hourlySalaryEmployee.setRate(setRate);
-                                        System.out.println(ANSI_BLUE+"Bunus update success..."+ANSI_RESET);
-                                        break;
-                                    }
-                                    case 0:{
-                                        System.out.println(ANSI_RED+"Exite..."+ANSI_RESET);
-                                        return ;
-                                    }
-                                    default:{
-                                        System.out.println(ANSI_RED+"Invalid  option please try again...."+ANSI_RESET);
-                                        break;
-                                    }
-                                }
-
-                            }
-                        }else {
-                            System.out.println(ANSI_RED+"ID"+choice+" was deleted..."+ANSI_RESET);
-                            break;
-                        }
-                }
-                System.out.println();
-            }
-        }catch (IndexOutOfBoundsException e){
-            System.out.println(ANSI_RED+"The id of Employee is incorect...!"+ANSI_RESET);
-
-        }
-    }
-
-
-
-
-    //case3
-    public  static  void display(){
-        Table table=new Table(9, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
+        Table table=new Table(6, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
         CellStyle cellStyle =new CellStyle(CellStyle.HorizontalAlign.center);
         table.setColumnWidth(0,30,30);
         table.setColumnWidth(1,30,30);
@@ -396,61 +159,240 @@ public class CompanyService {
         table.setColumnWidth(3,30,30);
         table.setColumnWidth(4,30,30);
         table.setColumnWidth(5,30,30);
-        table.setColumnWidth(6,30,30);
-        table.setColumnWidth(7,30,30);
-        table.setColumnWidth(8,30,30);
-
-
-
-        table.addCell("Type",cellStyle );
+        table.addCell("Tye",cellStyle );
         table.addCell("ID",cellStyle );
         table.addCell("Name",cellStyle );
         table.addCell("Address",cellStyle );
         table.addCell("Salary",cellStyle );
-        table.addCell("Bounus",cellStyle );
-        table.addCell("Hour",cellStyle );
-        table.addCell("rate",cellStyle );
         table.addCell("Pay",cellStyle );
 
-        list.stream().forEach((s)->{
-            if (s instanceof  Volunteer volunteer){
-                table.addCell("Volunteer");
-                table.addCell(String.valueOf(volunteer.id));
-                table.addCell(volunteer.name);
-                table.addCell(volunteer.address);
-                table.addCell(String.valueOf(volunteer.getSalary()));
-                table.addCell("----");
-                table.addCell("----");
-                table.addCell("----");
-                table.addCell(String.valueOf(volunteer.pay()));
 
-            } else if (s instanceof  SalariedEmployee salariedEmployee) {
-                table.addCell("Salaried Employee");
-                table.addCell(String.valueOf(salariedEmployee.id));
-                table.addCell(salariedEmployee.name);
-                table.addCell(salariedEmployee.address);
-                table.addCell(String.valueOf(salariedEmployee.getSalary()));
-                table.addCell(String.valueOf(salariedEmployee.getBunus()));
-                table.addCell("----");
-                table.addCell("----");
-                table.addCell(String.valueOf(salariedEmployee.pay()));
+        Table table2=new Table(7, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
+        table2.setColumnWidth(0,30,30);
+        table2.setColumnWidth(1,30,30);
+        table2.setColumnWidth(2,30,30);
+        table2.setColumnWidth(3,30,30);
+        table2.setColumnWidth(4,30,30);
+        table2.setColumnWidth(5,30,30);
+        table2.setColumnWidth(6,30,30);
+        table2.addCell("Type",cellStyle );
+        table2.addCell("ID",cellStyle );
+        table2.addCell("Name",cellStyle );
+        table2.addCell("Address",cellStyle );
+        table2.addCell("Salary",cellStyle );
+        table2.addCell("Bunus",cellStyle );
+        table2.addCell("Pay",cellStyle );
 
-            }else if (s instanceof  HourlySalaryEmployee hourlySalaryEmployee) {
-                table.addCell("HourlySalaryEmployee.java");
-                table.addCell(String.valueOf(hourlySalaryEmployee.id));
-                table.addCell(hourlySalaryEmployee.name);
-                table.addCell(hourlySalaryEmployee.address);
-                table.addCell("----");
-                table.addCell("----");
-                table.addCell(String.valueOf(hourlySalaryEmployee.getHourWork()));
-                table.addCell(String.valueOf(hourlySalaryEmployee.getRate()));
-                table.addCell(String.valueOf(hourlySalaryEmployee.pay()));
+
+        Table table3=new Table(7, BorderStyle.UNICODE_BOX, ShownBorders.ALL);
+        table3.setColumnWidth(0,30,30);
+        table3.setColumnWidth(1,30,30);
+        table3.setColumnWidth(2,30,30);
+        table3.setColumnWidth(3,30,30);
+        table3.setColumnWidth(4,30,30);
+        table3.setColumnWidth(5,30,30);
+        table3.setColumnWidth(6,30,30);
+        table3.addCell("Type");
+        table3.addCell("ID",cellStyle );
+        table3.addCell("Name",cellStyle );
+        table3.addCell("Address",cellStyle );
+        table3.addCell("Hourwork",cellStyle );
+        table3.addCell("Rate",cellStyle );
+        table3.addCell("Pay",cellStyle );
+
+        boolean check = true;
+
+        try {
+            if (list.get(choice-1) != null  ){
+
+                for (StaffMember s: list){
+
+                    if (choice == s.id) {
+                        check = true;
+                        if (s instanceof Volunteer volunteer) {
+
+                            table.addCell("Vounteer");
+                            table.addCell(String.valueOf(volunteer.id));
+                            table.addCell(volunteer.name);
+                            table.addCell(volunteer.address);
+                            table.addCell(String.valueOf(volunteer.getSalary()));
+                            table.addCell(String.valueOf(volunteer.pay()));
+                            System.out.println(table.render());
+
+
+                                System.out.println();
+                                System.out.println(ANSI_GREEN + "Choose one column to update: " + ANSI_RESET);
+                                System.out.println("1. Name \t\t 2. Address \t\t 3. Salary \t\t 0.Cancel");
+                                int select = inputUtil.hour("=> Select Column Number:");
+
+                                switch (select) {
+                                    case 1: {
+                                        String setname = inputUtil.Inputname("=> Enter your new name: ");
+                                        list.get(choice - 1).name = setname;
+                                        System.out.println(ANSI_BLUE + "Name update success..." + ANSI_RESET);
+                                        check=true;
+                                        break;
+                                    }
+                                    case 2: {
+                                        System.out.print("=> Enter your new address: ");
+                                        String setaddress = sc.next();
+                                        list.get(choice - 1).address = setaddress;
+                                        System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                        break;
+                                    }
+                                    case 3: {
+
+                                        double setsalry = inputUtil.InputRate("=> Enter your new salary:");
+                                        volunteer.setSalary(setsalry);
+                                        System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                        break;
+                                    }
+                                    case 0: {
+                                        System.out.println(ANSI_RED + "Exite..." + ANSI_RESET);
+
+                                        return;
+                                    }
+                                    default: {
+                                        System.out.println(ANSI_RED + "Invalid  option please try again...." + ANSI_RESET);
+                                        break;
+                                    }
+                            }
+                        } else if (s instanceof SalariedEmployee salariedEmployee) {
+                            table2.addCell("SalariedEmployee", cellStyle);
+                            table2.addCell(String.valueOf(salariedEmployee.id));
+                            table2.addCell(salariedEmployee.name);
+                            table2.addCell(salariedEmployee.address);
+                            table2.addCell(String.valueOf(salariedEmployee.getSalary()));
+                            table2.addCell(String.valueOf(salariedEmployee.getBunus()));
+                            table2.addCell(String.valueOf(salariedEmployee.pay()));
+
+                            System.out.println(table2.render());
+
+                            System.out.println();
+                            System.out.println(ANSI_GREEN + "Choose one column to update: " + ANSI_RESET);
+                            System.out.println("1. Name \t\t 2. Address \t\t 3. Salary \t\t 4. Bunus  \t\t 0.Cancel");
+                            int select = inputUtil.hour("=> Select Column Number:");
+                            switch (select) {
+                                case 1: {
+                                    String setname = inputUtil.Inputname("=> Enter your new name: ");
+                                    list.get(choice - 1).name = setname;
+                                    System.out.println(ANSI_BLUE + "Name update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 2: {
+                                    System.out.print("=> Enter your new address: ");
+                                    String setaddress = sc.next();
+                                    list.get(choice - 1).address = setaddress;
+                                    System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 3: {
+
+                                    double setsalry = inputUtil.InputRate("=> Enter your new salary:");
+                                    salariedEmployee.setSalary(setsalry);
+                                    System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 4: {
+                                    double setbunus = inputUtil.Inputbalance("=> Enter your new Bunus");
+                                    salariedEmployee.setBunus(setbunus);
+                                    System.out.println(ANSI_BLUE + "Bunus update success..." + ANSI_RESET);
+                                    break;
+                                }
+                                case 0: {
+                                    System.out.println(ANSI_RED + "Exite..." + ANSI_RESET);
+                                    return;
+                                }
+                                default: {
+                                    System.out.println(ANSI_RED + "Invalid  option please try again...." + ANSI_RESET);
+                                    break;
+                                }
+                            }
+
+                        } else if (s instanceof HourlySalaryEmployee hourlySalaryEmployee) {
+                            table3.addCell("HourlySalaryEmployee", cellStyle);
+                            table3.addCell(String.valueOf(hourlySalaryEmployee.id));
+                            table3.addCell(hourlySalaryEmployee.name);
+                            table3.addCell(hourlySalaryEmployee.address);
+                            table3.addCell(String.valueOf(hourlySalaryEmployee.getHourWork()));
+                            table3.addCell(String.valueOf(hourlySalaryEmployee.getRate()));
+                            table3.addCell(String.valueOf(hourlySalaryEmployee.pay()));
+
+                            System.out.println(table3.render());
+
+
+                            System.out.println();
+                            System.out.println(ANSI_GREEN + "Choose one column to update: " + ANSI_RESET);
+                            System.out.println("1. Name \t\t 2. Address \t\t 3. Hour \t\t 4. Rate  \t\t 0.Cancel");
+                            int select = inputUtil.hour("=> Select Column Number:");
+                            switch (select) {
+                                case 1: {
+                                    String setname = inputUtil.Inputname("=> Enter your new name: ");
+                                    list.get(choice - 1).name = setname;
+                                    System.out.println(ANSI_BLUE + "Name update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 2: {
+                                    System.out.print("=> Enter your new address: ");
+                                    String setaddress = sc.next();
+                                    list.get(choice - 1).address = setaddress;
+                                    System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 3: {
+
+                                    int seethour = inputUtil.hour("=> Enter your new hour:");
+                                    hourlySalaryEmployee.setHourWork(seethour);
+                                    System.out.println(ANSI_BLUE + "Address update success..." + ANSI_RESET);
+
+                                    break;
+                                }
+                                case 4: {
+                                    double setRate = inputUtil.Inputbalance("=> Enter your new rate:");
+                                    hourlySalaryEmployee.setRate(setRate);
+                                    System.out.println(ANSI_BLUE + "Bunus update success..." + ANSI_RESET);
+                                    break;
+                                }
+                                case 0: {
+                                    System.out.println(ANSI_RED + "Exite..." + ANSI_RESET);
+                                    return;
+                                }
+                                default: {
+                                    System.out.println(ANSI_RED + "Invalid  option please try again...." + ANSI_RESET);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }else {
+                        check = false;
+
+                    }
+                }
 
             }
-        });
-        System.out.println(table.render());
+            if(!check){
+                System.out.println(ANSI_RED+"Invalid id"+ANSI_RESET);
+            }
+            System.out.println();
+
+        }catch (IndexOutOfBoundsException e){
+            System.out.println(ANSI_RED+"Doesnot have that id"+ANSI_RESET);
+        }
+
 
     }
+
+
+
+
 
 
     //caase4
@@ -461,7 +403,6 @@ public class CompanyService {
         try {
             while (true){
                 for ( StaffMember s: list){
-                    System.out.println("s"+s.id);
                     if(s.id == delId  ){
                         list.remove(s);
                         System.out.println("success");
@@ -510,7 +451,8 @@ public class CompanyService {
                         break;
                     }
                     case 3:{
-                        display();
+                        table.displayEmployee(list);
+
 
                         break;
 
